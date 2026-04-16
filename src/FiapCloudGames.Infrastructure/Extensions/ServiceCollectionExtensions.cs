@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
+using Microsoft.OpenApi;
 
 namespace FiapCloudGames.Infrastructure.Extensions;
 
@@ -90,4 +91,37 @@ public static class ServiceCollectionExtensions
 
         return services;
     }
+    public static void AddSwaggerExtension(this IServiceCollection service)
+    {
+        service.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "FIAP Cloud Games API",
+                Version = "v1",
+                Description = "API REST para a plataforma de venda de jogos digitais e gerenciamento de servidores de jogos online."
+            });
+
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Description = "Informe apenas o token JWT (sem o prefixo 'Bearer').",
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer",
+                BearerFormat = "JWT"
+            });
+
+            options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
+            {
+                [new OpenApiSecuritySchemeReference("Bearer", document)] = []
+            });
+
+            var xmlFiles = Directory.GetFiles(AppContext.BaseDirectory, "*.xml", SearchOption.TopDirectoryOnly);
+            foreach (var xmlFile in xmlFiles)
+            {
+                options.IncludeXmlComments(xmlFile);
+            }
+        });
+
+    }
+
 }
