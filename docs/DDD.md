@@ -5,7 +5,7 @@ Modelagem de dominio usando Domain-Driven Design (DDD) com Event Storming para o
 ## Linguagem Ubiqua
 
 | Termo | Definicao |
-|---|---|
+| --- | --- |
 | **Usuario** | Pessoa cadastrada na plataforma, com perfil Usuario ou Administrador |
 | **Administrador** | Usuario com permissoes elevadas para gerenciar jogos e usuarios |
 | **Jogo** | Produto digital disponivel para aquisicao no catalogo |
@@ -145,7 +145,7 @@ classDiagram
 ### Legenda
 
 | Cor | Elemento | Descricao |
-|---|---|---|
+| --- | --- | --- |
 | Laranja | **Evento de Dominio** | Algo que aconteceu no sistema |
 | Azul | **Comando** | Acao solicitada por um ator |
 | Amarelo | **Agregado** | Entidade raiz que processa o comando |
@@ -180,7 +180,7 @@ flowchart LR
 ```
 
 | Elemento | Detalhes |
-|---|---|
+| --- | --- |
 | **Comando** | `RegistrarUsuario(nome, email, senha)` |
 | **Agregado** | `Usuario` |
 | **Politicas** | Email formato valido, email unico no sistema, senha com 8+ caracteres + maiuscula + minuscula + numero + especial |
@@ -214,7 +214,7 @@ flowchart LR
 ```
 
 | Elemento | Detalhes |
-|---|---|
+| --- | --- |
 | **Comando** | `AutenticarUsuario(email, senha)` |
 | **Agregado** | `Usuario` |
 | **Politicas** | Mesma mensagem de erro para email inexistente e senha incorreta (prevencao de enumeracao), verificar conta ativa |
@@ -247,7 +247,7 @@ flowchart LR
 ```
 
 | Elemento | Detalhes |
-|---|---|
+| --- | --- |
 | **Comando** | `CadastrarJogo(titulo, descricao, genero, preco, dataLancamento)` |
 | **Agregado** | `Jogo` |
 | **Politicas** | Apenas administrador, titulo unico no catalogo, preco nao negativo |
@@ -280,7 +280,7 @@ flowchart LR
 ```
 
 | Elemento | Detalhes |
-|---|---|
+| --- | --- |
 | **Comando** | `AdquirirJogo(usuarioId, jogoId)` — usuarioId extraido do token JWT |
 | **Agregado** | `BibliotecaJogo` |
 | **Politicas** | Usuario deve estar ativo, jogo deve estar ativo, usuario nao pode possuir o jogo |
@@ -291,7 +291,7 @@ flowchart LR
 ## Resumo de Comandos e Eventos
 
 | Contexto | Comando | Eventos de Sucesso | Eventos de Falha |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Identidade e Acesso | RegistrarUsuario | UsuarioRegistrado | EmailInvalido, EmailJaExistente, SenhaInvalida |
 | Identidade e Acesso | AutenticarUsuario | UsuarioAutenticado | CredenciaisInvalidas, ContaDesativada |
 | Catalogo de Jogos | CadastrarJogo | JogoCadastrado | AcessoNegado, TituloDuplicado, PrecoInvalido |

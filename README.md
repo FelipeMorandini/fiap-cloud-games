@@ -7,7 +7,7 @@ Plataforma de venda de jogos digitais e gerenciamento de servidores de jogos onl
 ## Tecnologias Utilizadas
 
 | Tecnologia | Versão | Finalidade |
-|---|---|---|
+| --- | --- | --- |
 | .NET | 10.0 (LTS) | Runtime e SDK |
 | C# | 14 | Linguagem |
 | ASP.NET Core | 10.0 | Framework Web API |
@@ -25,7 +25,7 @@ Plataforma de venda de jogos digitais e gerenciamento de servidores de jogos onl
 
 O projeto segue **Clean Architecture** em monolito modular, com Domain-Driven Design (DDD):
 
-```
+```text
 ┌─────────────────────────────────────────────┐
 │                    API                      │
 │   Controllers, Middleware, Swagger, DI      │
@@ -45,7 +45,7 @@ O projeto segue **Clean Architecture** em monolito modular, com Domain-Driven De
 
 ### Fluxo de dependências
 
-```
+```text
 Domain          ← zero dependências externas
 Application     ← Domain
 Infrastructure  ← Domain, Application
@@ -123,7 +123,7 @@ dotnet test tests/FiapCloudGames.IntegrationTests
 ### Cobertura de testes
 
 | Camada | Testes | Tipo |
-|---|---|---|
+| --- | --- | --- |
 | Domain (Entities, Value Objects) | 35 | Unitário |
 | Application (Services) | 30 | Unitário |
 | Application (Validators) | 20 | Unitário |
@@ -135,13 +135,13 @@ dotnet test tests/FiapCloudGames.IntegrationTests
 ### Autenticacao
 
 | Metodo | Rota | Descricao | Auth |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | POST | `/api/v1/auth/login` | Autenticar e obter token JWT | Publico |
 
 ### Usuarios
 
 | Metodo | Rota | Descricao | Auth |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | POST | `/api/v1/usuarios` | Registrar novo usuario | Publico |
 | GET | `/api/v1/usuarios` | Listar usuarios (paginado) | Admin |
 | GET | `/api/v1/usuarios/{id}` | Obter usuario por ID | Proprio ou Admin |
@@ -151,7 +151,7 @@ dotnet test tests/FiapCloudGames.IntegrationTests
 ### Jogos
 
 | Metodo | Rota | Descricao | Auth |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | GET | `/api/v1/jogos` | Listar jogos (paginado, filtro por genero) | Autenticado |
 | GET | `/api/v1/jogos/{id}` | Obter jogo por ID | Autenticado |
 | POST | `/api/v1/jogos` | Cadastrar novo jogo | Admin |
@@ -161,7 +161,7 @@ dotnet test tests/FiapCloudGames.IntegrationTests
 ### Biblioteca
 
 | Metodo | Rota | Descricao | Auth |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | GET | `/api/v1/biblioteca` | Listar jogos adquiridos | Autenticado |
 | POST | `/api/v1/biblioteca` | Adquirir jogo | Autenticado |
 
@@ -175,7 +175,7 @@ dotnet test tests/FiapCloudGames.IntegrationTests
 
 ## Estrutura do Projeto
 
-```
+```text
 fiap-cloud-games/
 ├── src/
 │   ├── FiapCloudGames.Domain/           # Entidades, VOs, Enums, Excecoes, Interfaces
@@ -196,6 +196,7 @@ A modelagem de dominio completa com Event Storming esta disponivel em:
 **[docs/DDD.md](docs/DDD.md)**
 
 Conteudo:
+
 - Linguagem Ubiqua (glossario)
 - Contextos Delimitados (diagrama Mermaid)
 - Mapa de Agregados (entidades, VOs, relacoes)
@@ -206,7 +207,7 @@ Conteudo:
 ## Decisoes Tecnicas
 
 | Decisao | Justificativa |
-|---|---|
+| --- | --- |
 | MongoDB ao inves de SQL Server | Flexibilidade de schema para catalogo de jogos com atributos variados |
 | EF Core com MongoDB Provider | Abstrai acesso a dados mantendo compatibilidade com EF Core patterns |
 | Named Query Filters (EF Core 10) | Soft-delete centralizado na configuracao, removendo filtros manuais |
@@ -217,12 +218,12 @@ Conteudo:
 ## Autores
 
 | Nome | RM |
-|---|---|
+| --- | --- |
 | Thiago Goulart de Brito | RM370407 |
 | Felipe Pires Morandini | RM370354 |
 | Lucas Silva | RM372520 |
 | Christopher Correa | RM372035 |
-| Flavio Ferreira de Luna | RM393706 |
+| Flavio Ferreira de Luna | RM373906 |
 
 ## Licenca
 
