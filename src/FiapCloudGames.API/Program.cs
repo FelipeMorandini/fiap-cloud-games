@@ -21,35 +21,7 @@ try
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
 
-    builder.Services.AddSwaggerGen(options =>
-    {
-        options.SwaggerDoc("v1", new OpenApiInfo
-        {
-            Title = "FIAP Cloud Games API",
-            Version = "v1",
-            Description = "API REST para a plataforma de venda de jogos digitais e gerenciamento de servidores de jogos online."
-        });
-
-        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        {
-            Description = "Informe apenas o token JWT (sem o prefixo 'Bearer').",
-            Type = SecuritySchemeType.Http,
-            Scheme = "bearer",
-            BearerFormat = "JWT"
-        });
-
-        options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
-        {
-            [new OpenApiSecuritySchemeReference("Bearer", document)] = []
-        });
-
-        var xmlFiles = Directory.GetFiles(AppContext.BaseDirectory, "*.xml", SearchOption.TopDirectoryOnly);
-        foreach (var xmlFile in xmlFiles)
-        {
-            options.IncludeXmlComments(xmlFile);
-        }
-    });
-
+    builder.Services.AddSwaggerExtension();
     builder.Services.AddValidatorsFromAssemblyContaining<CriarUsuarioValidator>();
 
     builder.Services.AddMongoDb(builder.Configuration);
